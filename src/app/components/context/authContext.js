@@ -2,7 +2,7 @@
 
 import { createContext, useEffect, useReducer } from "react";
 import authReducer from "./authReducer";
-import { CERRAR_SESION, INICIAR_SESION, REGISTRARSE, VALIDAR_SESION, VALIDAR_SESION_EXITO } from "@/app/types";
+import { CERRAR_SESION, INICIAR_SESION, REGISTRARSE, VALIDAR_SESION, VALIDAR_SESION_ERROR, VALIDAR_SESION_EXITO } from "@/app/types";
 import { clienteAxios } from "@/config/axios";
 import { useRouter } from "next/navigation";
 
@@ -12,7 +12,7 @@ export const AuthProvider = ({children}) => {
     const router = useRouter()
 
     const initialState = {
-        session: sessionStorage.getItem(process.env.AUTH_JWT),
+        session: null,
         usuario: null
     }
 
@@ -51,22 +51,29 @@ export const AuthProvider = ({children}) => {
         })
     }
 
-    useEffect(() => {
-    }, [])
-
 
     const validarSesion = async() => {
-        const session = sessionStorage.getItem(process.env.AUTH_JWT)
-        if (session !== null) {
-            console.log('no logeao')
-        } else {
-            const resul = await clienteAxios.get('/api/users/me')
-            console.log(resul)
+        try {
+            state.session = sessionStorage.getItem(process.env.AUTH_JWT)
+            if (state.session !== null) {
+                const resul = await clienteAxios.get('/api/users/me', {
+                    headers: {
+                        'Authorization': 'Bearer ' + state.session
+                    }
+                })
+                state.session ? router.push('/') : null
+                dispatch({
+                    type: VALIDAR_SESION_EXITO,
+                    payload:  resul.data
+                })
+            } else {
+                dispatch({
+                    type: VALIDAR_SESION_ERROR
+                })
+            }
+        } catch (error) {
+            console.log(error)
         }
-        dispatch({
-            type: VALIDAR_SESION
-        })
-        state.session ? router.push('/') : null
     }
 
 

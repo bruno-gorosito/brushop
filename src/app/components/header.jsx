@@ -13,13 +13,13 @@ export const Header = () => {
     const router = useRouter();
 
     const context = useContext(authContext)
-    const {session, cerrarSesion} = context;
+    const {session, validarSesion, cerrarSesion} = context;
 
 
 
     useEffect(() => {
         //validarSession
-        session ? router.push('/') : null;
+        validarSesion();
     }, []);
 
     return(

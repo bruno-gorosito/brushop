@@ -1,4 +1,4 @@
-import { CERRAR_SESION, INICIAR_SESION, REGISTRARSE, VALIDAR_SESION } from "@/app/types";
+import { CERRAR_SESION, INICIAR_SESION, REGISTRARSE, VALIDAR_SESION, VALIDAR_SESION_ERROR, VALIDAR_SESION_EXITO } from "@/app/types";
 
 
 
@@ -11,15 +11,22 @@ export default function (state, action) {
                 session: sessionStorage.getItem(process.env.AUTH_JWT),
                 usuario: action.payload
             }
+        case VALIDAR_SESION_ERROR:
         case CERRAR_SESION:
             return{
                 ...state,
                 session: null,
                 usuario: null
             }
-        case VALIDAR_SESION:
+        // case VALIDAR_SESION:
+        //     return {
+        //         ...state,
+        //         session: sessionStorage.getItem(process.env.AUTH_JWT)
+        //     }
+        case VALIDAR_SESION_EXITO:
             return {
-                ...state
+                ...state,
+                usuario: action.payload
             }
         default:
             return state;
