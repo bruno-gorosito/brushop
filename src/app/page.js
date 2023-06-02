@@ -11,7 +11,10 @@ export default function Home() {
 
   return (
     <>
-      <h1>Ya haré esto, perdón {usuario.username}</h1>
+      {usuario 
+        ? <h1>Ya haré esto, perdón {usuario.username}</h1> 
+        : <h1>Logeate y después hablamos, ok?</h1>
+      }
     </>
   )
 }
