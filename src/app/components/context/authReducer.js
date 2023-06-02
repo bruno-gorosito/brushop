@@ -11,14 +11,16 @@ export default function (state, action) {
                 session: sessionStorage.getItem(process.env.AUTH_JWT),
                 usuario: action.payload
             }
-            break;
         case CERRAR_SESION:
             return{
                 ...state,
                 session: null,
                 usuario: null
             }
-            break;
+        case VALIDAR_SESION:
+            return {
+                ...state
+            }
         default:
             return state;
     }

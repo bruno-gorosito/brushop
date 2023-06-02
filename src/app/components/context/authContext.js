@@ -1,6 +1,6 @@
 'use client'
 
-import { createContext, useReducer } from "react";
+import { createContext, useEffect, useReducer } from "react";
 import authReducer from "./authReducer";
 import { CERRAR_SESION, INICIAR_SESION, REGISTRARSE, VALIDAR_SESION, VALIDAR_SESION_EXITO } from "@/app/types";
 import { clienteAxios } from "@/config/axios";
@@ -12,20 +12,24 @@ export const AuthProvider = ({children}) => {
     const router = useRouter()
 
     const initialState = {
-        session: sessionStorage.getItem(process.env.AUTH_JWT) || null,
+        session: sessionStorage.getItem(process.env.AUTH_JWT),
         usuario: null
     }
 
     const [state, dispatch] = useReducer(authReducer, initialState);
 
     const iniciarSesion = async({username, password}) => {
-        const resul = await clienteAxios.post('/api/auth/local', {identifier: username, password: password});
-        sessionStorage.setItem(process.env.AUTH_JWT, resul.data.jwt);
-        router.push('/')
-        dispatch({
-            type: INICIAR_SESION,
-            payload: resul.data.user
-        })
+        try {
+            const resul = await clienteAxios.post('/api/auth/local', {identifier: username, password: password});
+            sessionStorage.setItem(process.env.AUTH_JWT, resul.data.jwt);
+            router.push('/')
+            dispatch({
+                type: INICIAR_SESION,
+                payload: resul.data.user
+            })
+        } catch (error) {
+          console.log(error)  
+        }
     }
 
     const cerrarSesion = () => {
@@ -47,12 +51,25 @@ export const AuthProvider = ({children}) => {
         })
     }
 
+    useEffect(() => {
+    }, [])
 
-    const validarSesion = () => {
+
+    const validarSesion = async() => {
+        const session = sessionStorage.getItem(process.env.AUTH_JWT)
+        if (session !== null) {
+            console.log('no logeao')
+        } else {
+            const resul = await clienteAxios.get('/api/users/me')
+            console.log(resul)
+        }
         dispatch({
             type: VALIDAR_SESION
         })
+        state.session ? router.push('/') : null
     }
+
+
 
     return (
         <authContext.Provider 

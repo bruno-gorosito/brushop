@@ -10,7 +10,7 @@ import { useContext, useEffect, useState } from "react";
 const Login = () => {
 
 
-    const {session, iniciarSesion} = useContext(authContext)
+    const {session, validarSesion, iniciarSesion} = useContext(authContext)
 
     const router = useRouter()
     const [usuario, setUsuario] = useState({
@@ -45,7 +45,7 @@ const Login = () => {
 
     useEffect(() => {
         //validar usuario
-        session ? router.push('/') : null
+        validarSesion();
     }, [])
 
     return(
@@ -55,7 +55,7 @@ const Login = () => {
                     onSubmit={submitForm}
                 >
                 <div className='my-2'>
-                    <label className='block my-2'>Correo Electronico: </label>
+                    <label className='block my-2'>Username: </label>
                     <input 
                         type='username'
                         name="username"

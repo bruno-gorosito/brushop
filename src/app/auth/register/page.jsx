@@ -2,8 +2,6 @@
 
 import { authContext } from "@/app/components/context/authContext";
 import { clienteAxios } from "@/config/axios";
-import axios from "axios";
-import { cookies } from "next/dist/client/components/headers";
 import { redirect, useRouter } from "next/navigation";
 import { useContext, useEffect, useState } from "react";
 
@@ -12,7 +10,7 @@ import { useContext, useEffect, useState } from "react";
 
 const Login = () => {
 
-    const {session, registrarme} = useContext(authContext)
+    const {session,validarSesion, registrarme} = useContext(authContext)
 
     const router = useRouter()
     const [usuario, setUsuario] = useState({
@@ -56,7 +54,7 @@ const Login = () => {
 
     useEffect(() => {
         //validar usuario
-        
+        validarSesion()
     }, [])
 
     return(
