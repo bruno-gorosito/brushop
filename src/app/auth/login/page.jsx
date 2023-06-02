@@ -54,6 +54,7 @@ const Login = () => {
                 <form
                     onSubmit={submitForm}
                 >
+                    <h2 className="text-center text-3xl my-4">Iniciar Sesión</h2>
                 <div className='my-2'>
                     <label className='block my-2'>Username: </label>
                     <input 

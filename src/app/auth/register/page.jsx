@@ -63,7 +63,7 @@ const Login = () => {
                 <form
                     onSubmit={submitForm}
                 >
-                    <h2>Registrarme</h2>
+                    <h2 className="text-center text-3xl my-4">Registrarme</h2>
                 <div className='my-2'>
                     <label className='block my-2'>Correo Electronico: </label>
                     <input 
