@@ -1,29 +1,36 @@
+'use client'
+
 import { clienteAxios } from "@/config/axios"
 import { CldImage } from "next-cloudinary"
 import Image from "next/image"
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 
 
 
 export const CardProducto = ({producto}) => {
 
 
-    const cargarProducto = async() => {
-        const productoki = await clienteAxios.get(`/api/productos/${producto.id}`)
-        console.log(productoki)
-    }
+    const [imagenes, setImagenes] = useState(producto.attributes.img.data);
+
 
     useEffect(() => {
-        cargarProducto();
+        console.log(producto.attributes.img.data)
     }, [])
+
     return(
         <>
             <h3>{producto.attributes.nombre}</h3>
-            {/* <CldImage 
-                src={producto.attributes}
-                width={500}
-                height={500}
-            /> */}
+            {imagenes.length !== 0 
+                ? (imagenes.map(imagen => (
+                    <CldImage
+                        key={imagen} 
+                        src={imagen.attributes.formats.small.url}
+                        width={500}
+                        height={500}
+                    /> 
+                )))
+                : null
+            }
         </>
     )
 }

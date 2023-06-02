@@ -29,6 +29,7 @@ export default function Home() {
       {productos.length !== 0 
         ? (productos.map(producto => (
           <CardProducto 
+            key={producto.id}
             producto={producto}
           />
         )))

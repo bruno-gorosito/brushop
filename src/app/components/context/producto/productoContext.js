@@ -20,7 +20,7 @@ export const ProductoProvider = ({children}) => {
     const [state, dispatch] = useReducer(productoReducer, initialState);
 
     const cargarProductos = async() => {
-        const resul = await clienteAxios.get('/api/productos');
+        const resul = await clienteAxios.get('/api/productos?populate=*');
         dispatch({
             type: CARGAR_PRODUCTOS,
             payload: resul.data.data
