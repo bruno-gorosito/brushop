@@ -16,16 +16,14 @@ const Login = () => {
     const [usuario, setUsuario] = useState({
         username: '',
         password: '',
-        email: ''
+        email: '',
+        name: '',
+        lastName: ''
     })
 
     const [password2, setPassword2] = useState('')
 
-    const [error, setError] = useState({
-        component: null,
-        error: false
-    })
-
+    
 
     const {username, email, password} = usuario
 
@@ -42,7 +40,7 @@ const Login = () => {
             if (password !== password2) console.log('ola1')
             if (email.trim() === '') console.log('ola2')
             if (username.trim() === '') console.log('ola3')
-            console.log(usuario)
+
             registrarme(usuario);
 
             router.back()
@@ -74,6 +72,23 @@ const Login = () => {
                     />
                 </div>
                 <div className='my-4'>
+                    <label className='block my-2'>Nombre: </label>
+                    <input 
+                        type='text'
+                        name="name"
+                        onChange={e => handleChange(e)}
+                        className="w-full text-black h-10 rounded outline-cyan-600 px-2"
+                    />
+                </div>
+                <div className='my-4'>
+                    <label className='block my-2'>Apellido: </label>
+                    <input 
+                        type='text'
+                        name="lastName"
+                        onChange={e => handleChange(e)}
+                        className="w-full text-black h-10 rounded outline-cyan-600 px-2"
+                    />
+                </div>
                 <div className='my-4'>
                     <label className='block my-2'>Username </label>
                     <input 
@@ -83,6 +98,7 @@ const Login = () => {
                         className="w-full text-black h-10 rounded outline-cyan-600 px-2"
                     />
                 </div>
+                <div className='my-4'>
                     <label className='block my-2'>Password: </label>
                     <input 
                         type='password'

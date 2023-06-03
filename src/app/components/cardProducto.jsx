@@ -10,27 +10,27 @@ import { useEffect, useState } from "react"
 export const CardProducto = ({producto}) => {
 
 
-    const [imagenes, setImagenes] = useState(producto.attributes.img.data);
-
-
-    useEffect(() => {
-        console.log(producto.attributes.img.data)
-    }, [])
-
     return(
         <>
-            <h3>{producto.attributes.nombre}</h3>
-            {imagenes.length !== 0 
-                ? (imagenes.map(imagen => (
+            <div className="w-1/2 md:w-1/4 overflow-hidden rounded-sm odd:border-r-4 even:border-r-4 border-transparent my-2">
+               <div className="border border-gray-700 rounded-lg overflow-hidden">
                     <CldImage
-                        key={imagen} 
-                        src={imagen.attributes.formats.small.url}
-                        width={500}
-                        height={500}
+                        src={producto.attributes.img.data[0].attributes.formats.small.url}
+                        width={600}
+                        height={600}
+                        alt={producto.attributes.nombre}
+                        className="aspect-square object-cover overflow-hidden bg-white"
                     /> 
-                )))
-                : null
-            }
+                    <div className="px-2">
+                        <h3 className="text-ellipsis overflow-hidden whitespace-nowrap capitalize mt-2 mb-4">{producto.attributes.nombre}</h3>
+                        <p>${producto.attributes.precio.toFixed(2)}</p>  
+                        <button
+                            className="bg-cyan-600 py-2 w-full rounded-lg my-2 hover:bg-cyan-800 text-white"
+                        >Añadir al carrito</button>
+                    </div>
+               </div>
+            
+            </div>
         </>
     )
 }

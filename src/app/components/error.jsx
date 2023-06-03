@@ -1,7 +1,14 @@
+import { useContext } from "react"
+import { authContext } from "./context/authContext"
 
 
-export const Error = ({msg}) => {
+export const Error = () => {
+
+    const {error} = useContext(authContext)
+
     return (
-        <p className="w-full max-w-sm bg-red-500 border border-red-800 rounded-lg">{msg}</p>
+        <>
+            {error !== '' ? <p className="w-full max-w-sm py-4 bg-red-500 border border-red-800  text-center">{error}</p> : null}
+        </>
     )
 }

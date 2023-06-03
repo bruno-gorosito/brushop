@@ -14,7 +14,7 @@ const Login = () => {
 
     const router = useRouter()
     const [usuario, setUsuario] = useState({
-        username: '',
+        identifier: '',
         password: ''
     })
 
@@ -23,8 +23,6 @@ const Login = () => {
         error: true
     })
 
-
-    const {username, password} = usuario
 
     const handleChange = e => {
     setUsuario({
@@ -56,10 +54,10 @@ const Login = () => {
                 >
                     <h2 className="text-center text-3xl my-4">Iniciar Sesión</h2>
                 <div className='my-2'>
-                    <label className='block my-2'>Username: </label>
+                    <label className='block my-2'>Email o username: </label>
                     <input 
-                        type='username'
-                        name="username"
+                        type='text'
+                        name="identifier"
                         onChange={e => handleChange(e)}
                         className="w-full text-black h-10 rounded outline-cyan-600 px-2"
                     />

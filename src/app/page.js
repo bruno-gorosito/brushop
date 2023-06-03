@@ -23,9 +23,11 @@ export default function Home() {
     <>
       <Image 
         src='/banner.png'
+        alt="banner-offer"
         width={500}
         height={500}
       />
+      <div className="flex flex-wrap px-2 py-4">
       {productos.length !== 0 
         ? (productos.map(producto => (
           <CardProducto 
@@ -38,6 +40,7 @@ export default function Home() {
         )
 
       }
+      </div>
     </>
   )
 }
