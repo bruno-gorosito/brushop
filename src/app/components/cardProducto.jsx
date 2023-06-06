@@ -11,7 +11,7 @@ export const CardProducto = ({producto}) => {
 
     return(
         <>
-            <div className="w-1/2 md:w-1/4 lg:w-1/6 overflow-hidden rounded-sm odd:border-r-4 even:border-r-4 border-transparent my-2">
+            <div className="w-1/2 min-w-[175px] lg:w-1/6 overflow-hidden rounded-sm odd:border-r-4 even:border-r-4 border-transparent my-2">
                <div className="border border-gray-700 rounded-lg overflow-hidden">
                     <CldImage
                         src={producto.attributes.img.data[0].attributes.formats.small ? producto.attributes.img.data[0].attributes.formats.small.url : producto.attributes.img.data[0].attributes.formats.thumbnail.url}
@@ -28,7 +28,6 @@ export const CardProducto = ({producto}) => {
                         >Añadir al carrito</button>
                     </div>
                </div>
-            
             </div>
         </>
     )
