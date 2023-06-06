@@ -5,7 +5,7 @@ import { productoContext } from "./context/producto/productoContext"
 
 export const CategoriasInicio = ({categoria}) => {
 
-    const {productos} = useContext(productoContext)
+    const {productos, cargarProductos} = useContext(productoContext)
     const [productosPorCategoria, setProductosPorCategoria] = useState([])
 
 
@@ -17,13 +17,10 @@ export const CategoriasInicio = ({categoria}) => {
 
     
     useEffect(() => {
-        
         console.log(productos)
         console.log(categoria)
-        setTimeout(() => {
-            filtrarProductos()
-        }, 500)
-    }, [])
+        filtrarProductos()
+    }, [productos])
 
     return(
         <>

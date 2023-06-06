@@ -41,7 +41,7 @@ export default function Home() {
         {categorias.map(categoria => (
           <CategoriasInicio 
             key={categoria.id}
-            categoria={categoria}
+            categoria={categoria} 
           />
         ))}
       {/* <div className="w-full max-w-5xl mx-auto flex flex-wrap px-2 py-4">
