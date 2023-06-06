@@ -1,5 +1,6 @@
 import { AuthProvider } from './components/context/authContext'
 import { ProductoProvider } from './components/context/producto/productoContext'
+import { Footer } from './components/footer'
 import { Header } from './components/header'
 import './globals.css'
 import { Inter } from 'next/font/google'
@@ -20,6 +21,7 @@ export default function RootLayout({ children }) {
           <AuthProvider>
             <Header />
             {children}
+            <Footer />
           </AuthProvider>
         </ProductoProvider>
       </body>

@@ -8,7 +8,7 @@ export const Error = () => {
 
     return (
         <>
-            {error !== '' ? <p className="w-full max-w-sm py-4 bg-red-500 border border-red-800  text-center">{error}</p> : null}
+            {error !== '' ? <p className="w-full max-w-xl py-4 bg-red-500 border border-red-800  text-center">{error}</p> : null}
         </>
     )
 }

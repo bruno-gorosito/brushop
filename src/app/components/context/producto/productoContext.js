@@ -28,7 +28,7 @@ export const ProductoProvider = ({children}) => {
     }
 
     const cargarCategorias = async() => {
-        const resul = await clienteAxios.get('/api/categorias');
+        const resul = await clienteAxios.get('/api/categorias?populate=*');
         dispatch({
             type: CARGAR_CATEGORIAS,
             payload: resul.data.data

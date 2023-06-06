@@ -25,7 +25,6 @@ export const Header = () => {
         //validarSession
         cargarCategorias()
         validarSesion();
-        console.log(usuario)
     }, []);
 
     return(
@@ -94,13 +93,33 @@ export const Header = () => {
 
                     </li>
                     <ul className={`${menu ? "scale-y-100 h-auto" : "scale-y-0 h-0 "} transition-height origin-top`}>
-                        {categorias.map(categoria => (
+                        <li 
+                            className="py-4 text-center w-full capitalize hover:bg-cyan-900">
+                            bebidas
+                        </li>
+                        <li 
+                            className="py-4 text-center w-full capitalize hover:bg-cyan-900">
+                            infantil
+                        </li>
+                        <li 
+                            className="py-4 text-center w-full capitalize hover:bg-cyan-900">
+                            juguetes
+                        </li>
+                        <li 
+                            className="py-4 text-center w-full capitalize hover:bg-cyan-900">
+                            limpieza
+                        </li>
+                        <li 
+                            className="py-4 text-center w-full capitalize hover:bg-cyan-900">
+                            Salud
+                        </li>
+                        {/* {categorias.map(categoria => (
                             <li 
                                 key={categoria.id}
                                 className="py-4 text-center w-full capitalize hover:bg-cyan-900">
                                 {categoria.attributes.name}
                             </li>
-                        ))}
+                        ))} */}
                     </ul>
                 </ul>
             </nav>
